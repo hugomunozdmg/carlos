@@ -6,6 +6,10 @@ import { MongoClient } from "mongodb";
 import postsApi from "./api/posts.js";
 import seguidoresApi from "./api/seguidores.js";
 import mensajesApi from "./api/mensajes.js";
+import dns from "dns";
+
+// DNS de Google
+dns.setServers(["8.8.8.8", "8.8.4.4"]);
 
 dotenv.config();
 
