@@ -1,0 +1,16 @@
+{
+  "name": "mongo-docker",
+  "version": "1.0.0",
+  "scripts": {
+    "clean": "docker system prune -a --volumes",
+    "db:up": "docker-compose up -d",
+    "db:down": "docker-compose down",
+    "db:shell": "docker exec -it mongodb mongosh -u admin -p admin123",
+    "export": "docker exec mongodb mongodump -u admin -p admin123 --authenticationDatabase admin --db test --archive=/tmp/backup.gz --gzip",
+    "export:save": "docker cp mongodb:/tmp/backup.gz ./backup.gz",
+    "import:copy": "docker cp ./samples_pokemon.bson mongodb:/tmp/samples_pokemon.bson",
+    "import": "docker exec mongodb mongorestore -u admin -p admin123 --authenticationDatabase admin --db pokemon /tmp",
+    "import:copy:friends": "docker cp ./samples_friends.bson mongodb:/tmp/samples_friends.bson",
+    "import:friends": "docker exec mongodb mongorestore -u admin -p admin123 --authenticationDatabase admin --db friends /tmp"
+  }
+}
